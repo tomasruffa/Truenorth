@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView, Image, Alert } from 'react-native';
-import axios from 'axios';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView, Image } from 'react-native';
 import {getCurrencies} from '../api/config'
 import { useNavigation } from '@react-navigation/native';
 import Loader from '../common/Loader'

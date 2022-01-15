@@ -1,6 +1,5 @@
-import React, { useEffect, createRef, useState } from 'react'
-import { Animated, View, StyleSheet, Text, Button } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import React, { useEffect } from 'react'
+import { Animated, StyleSheet, } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Loader = () => {

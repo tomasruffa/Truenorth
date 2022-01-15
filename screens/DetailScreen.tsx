@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { getCurrencie } from '../api/config'
 import Loader from '../common/Loader'
