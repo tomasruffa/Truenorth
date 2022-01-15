@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView, Image, Al
 import axios from 'axios';
 import {getCurrencies} from '../api/config'
 import { useNavigation } from '@react-navigation/native';
+import Loader from '../common/Loader'
+import { CurrencieType } from '../model/model';
 // import greenArrow from '../assets/greenArrow.png'
 
 /**
@@ -22,7 +24,7 @@ export default function ListScreen() {
     up: require('../assets/greenArrow.png')
   }
   const navigation = useNavigation();
-  const [allAssets, setAllAssets] = useState([])
+  const [allAssets, setAllAssets] = useState<CurrencieType[]>([])
 
   useEffect(() => {
     getCurrencies().then((results) => { setAllAssets(results.data.data)});
@@ -64,7 +66,7 @@ export default function ListScreen() {
           ))}
         </ScrollView>
       ) : (
-        <Text>Loading</Text>
+        <Loader />
       )}
     </View>
   );

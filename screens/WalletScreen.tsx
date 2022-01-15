@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet, Text, View, ScrollView, Image, Linking } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useContext } from 'react';
 import { UserContext } from '../auth/auth';
@@ -17,13 +16,35 @@ const Tab = createBottomTabNavigator();
 
 export default function WalletScreen() {
   return (
-    <Tab.Navigator tabBarOptions={{
-      labelStyle: {
-        fontSize: 15,
-      },
-    }}>
-      <Tab.Screen name="Account" component={AccountSection} />
-      <Tab.Screen name="Partners" component={PartnersSection} />
+    <Tab.Navigator
+      screenOptions={{  
+        tabBarShowLabel: true,
+        tabBarActiveTintColor: '#019FB5',
+        tabBarInactiveTintColor: 'black',
+        tabBarLabelStyle: {
+          fontSize: 16,
+          fontWeight: 'bold',
+        },
+        tabBarIconStyle: {
+          display: 'none'
+        },
+        headerShown: false
+      }}
+    >
+      <Tab.Screen name="Account" component={AccountSection} options={{
+        tabBarLabel: ({ focused }) => (
+          <View style={[styles.tabContainer, (focused ? styles.tabBorder : {})]}>
+            <Text style={[styles.tabLabel, (focused ? styles.tabSelected : {})]}>Account</Text>
+          </View>
+        )
+      }} />
+      <Tab.Screen name="Partners" component={PartnersSection} options={{
+          tabBarLabel: ({ focused }) => (
+            <View style={[styles.tabContainer, (focused ? styles.tabBorder : {})]}>
+              <Text style={[styles.tabLabel, (focused ? styles.tabSelected : {})]}>Partners</Text>
+            </View>
+          )
+        }} />
     </Tab.Navigator>
   );
 }
@@ -34,32 +55,32 @@ function AccountSection() {
     <View style={styles.container}>
       <Image style={styles.illustration} source={require('../assets/finish-illustration.png')} />
       <Text style={styles.title}>Hello, {value.name}</Text>
-      <Text>Glad you are here. Hope to see you soon.</Text>
+      <Text style={styles.description}>Glad you are here. Hope to see you soon.</Text>
     </View>
   );
 }
 
 function PartnersSection() {
   const partnerList = [
-    { name: 'App1', url: '#', comments: 'Description of the application and what you did.' },
-    { name: 'App2', url: '#', comments: 'Description of the application and what you did.' },
-    { name: 'App3', url: '#', comments: 'Description of the application and what you did.' },
+    { name: 'Sandlot', url: 'https://apps.apple.com/app/id1540255774', comments: 'Social media for trainers and trainees made it in React Native.' },
+    { name: 'NarnjaX', url: 'https://www.naranjax.com', comments: 'Fintech webpage from Argentina made it in Angular.' },
+    { name: 'Disney', url: 'https://adn.disneylatino.com', comments: 'Disney Plus ADN discover for kids made it in ReactJS.' },
   ];
 
   const ListItem = ({ item }) => {
     return (
       <View style={styles.itemContainer}>
-        <Text>{item.name}</Text>
-        <Text>{item.comments}</Text>
-        <Text>URL: {item.url}</Text>
+        <Text style={styles.itemTitle}>{item.name}</Text>
+        <Text style={styles.itemDescription}>{item.comments}</Text>
+        <Text style={[styles.itemDescription, {marginBottom: 0}]}>URL: <Text onPress={() => Linking.openURL(item.url)} style={styles.itemUrl}>{item.url}</Text></Text>
       </View>
     );
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Partners</Text>
-      <Text>Some apps I was involved:</Text>
+    <View style={[styles.container, {backgroundColor: '#E5E5E5'}]}>
+      <Text style={[styles.title, {marginVertical: 24}]}>Partners</Text>
+      <Text style={styles.descriptionPartner}>Here are somes apps I was involved in:</Text>
       {partnerList && partnerList.length > 0 ? (
         <ScrollView>
           {partnerList.map((item) => (
@@ -78,21 +99,62 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   title: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 12,
+    marginBottom: 24,
   },
   illustration: {
     width: 256,
     height: 160,
+    marginTop: 170
   },
   itemContainer: {
     display: 'flex',
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
+    marginHorizontal: 30,
     marginVertical: 6,
-    padding: 8,
+    padding: 20,
+    borderRadius: 8,
+    shadowOffset:{  width: 1,  height: 0,  },
+    shadowColor: 'black',
+    shadowOpacity: 0.01,
   },
+  itemTitle: {
+    color: '#019FB5',
+    fontSize: 16,
+    fontWeight: '700',
+    marginBottom: 12
+  },
+  itemDescription: {
+    fontSize: 16,
+    marginBottom: 24
+  },
+  itemUrl: {
+    color: '#6B7280'
+  },
+  description: {
+    fontSize: 14,
+  },
+  tabLabel: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
+  tabContainer: {
+    flex: 1,
+    justifyContent: 'flex-end'
+  },
+  tabBorder: {
+    borderTopColor: '#019FB5',
+    borderTopWidth: 4
+  },
+  tabSelected: {
+    color: '#019FB5',
+  },
+  descriptionPartner: {
+    fontSize: 16,
+    marginBottom: 16
+  }
 });

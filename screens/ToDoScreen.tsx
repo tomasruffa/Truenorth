@@ -23,20 +23,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
     padding: 20,
   },
   illustration: {
     width: 256,
     height: 256,
+    marginTop: 100,
   },
   title: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 25,
   },
   description: {
-    marginBottom: 12,
+    marginBottom: 14,
+    lineHeight: 20,
     textAlign: 'center',
   },
   button: {
@@ -46,10 +47,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
-    marginTop: 20
+    marginTop: 30,
+    shadowOffset:{  width: 1,  height: 0,  },
+    shadowColor: 'black',
+    shadowOpacity: 0.1,
   },
   buttonText: {
     color: 'white',
-    fontWeight: 'bold'
+    fontWeight: '500'
   }
 });

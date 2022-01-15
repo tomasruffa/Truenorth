@@ -33,21 +33,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
     padding: 20
   },
   title: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 60,
+    marginBottom: 45,
+    marginTop: 120,
   },
   input: {
-    fontSize: 20,
+    fontSize: 16,
     width: windowWidth,
     height: 50,
     borderWidth: 1,
     borderColor: '#d7d9de',
-    borderRadius: 10,
+    borderRadius: 6,
     paddingHorizontal: 15,
   },
   button: {
@@ -57,10 +57,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
-    marginTop: 40
+    marginTop: 45,
+    shadowOffset:{  width: 1,  height: 0,  },
+    shadowColor: 'black',
+    shadowOpacity: 0.1,
   },
   buttonText: {
     color: 'white',
-    fontWeight: 'bold'
+    fontWeight: '500'
   }
 });

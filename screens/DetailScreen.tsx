@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions, Alert } from 'react-native';
-import axios from 'axios';
 import { useRoute, useNavigation } from '@react-navigation/native';
-import {getCurrencie} from '../api/config'
+import { getCurrencie } from '../api/config'
+import Loader from '../common/Loader'
+import { CurrencieType } from '../model/model';
 
 /**
  * ToDo: Feed the list using fetching data from a RESTful API
@@ -27,7 +28,7 @@ export default function ListScreen() {
     up: require('../assets/greenArrow.png')
   }
 
-  const [currentItem, setCurrentItem] = useState()
+  const [currentItem, setCurrentItem] = useState<CurrencieType>()
 
   useEffect(() => {
     getCurrencie(item).then((results) => {setCurrentItem(results.data.data) });
@@ -68,7 +69,7 @@ export default function ListScreen() {
         </TouchableOpacity>
         </>
       ): (
-        <Text>Loading</Text>
+        <Loader />
       )}
     </View>
   );
