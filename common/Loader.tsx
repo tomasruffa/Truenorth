@@ -6,10 +6,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const Loader = () => {
     let animatedValue = new Animated.Value(0);
     let currentValue = 0;
-    const [buttonFlip, setButtonFlip] = useState<any>();
 
     const logo = require('../assets/logo.png')
-    const [isLoading, setIsLoading ] = useState(false)
 
     animatedValue.addListener(({value}) => {
         currentValue = value
